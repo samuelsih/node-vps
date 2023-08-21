@@ -3,6 +3,8 @@ name: Run Job
 on:
   pull_request:
     branches-ignore: ["main", "master"]
+  push:
+    branches-ignore: ["main", "master"]
 
 jobs:
   check:
