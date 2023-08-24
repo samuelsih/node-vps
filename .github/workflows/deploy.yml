@@ -17,7 +17,7 @@ jobs:
           node-version: 18
           cache: npm
 
-      - name: Install Production Dependencies
+      - name: Install Dependencies
         run: HUSKY=0 npm ci
 
       - name: Build
@@ -41,5 +41,7 @@ jobs:
           script_stop: true # stop after first failure
           script: |
             cd ~/nodejsapp/deployed
-            HUSKY=0 npm ci --omit=dev
+            npm i npe
+            npx npe scripts.prepare ""
+            npm ci --omit=dev
             pm2 start ~/nodejsapp/deployed/dist/index.js --name=TheApp
