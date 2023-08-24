@@ -1,0 +1,5 @@
+dist/*
+Caddyfile
+docker-compose.yml
+Dockerfile
+.dockerignore
