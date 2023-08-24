@@ -7,6 +7,4 @@ RUN npm i
 
 COPY . .
 
-EXPOSE 7000
-
 CMD ["npm", "run", "dev"]
