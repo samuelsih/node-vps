@@ -18,7 +18,7 @@ jobs:
           cache: npm
 
       - name: Install Production Dependencies
-        run: HUSKY=0 npm ci --omit=dev
+        run: HUSKY=0 npm ci
 
       - name: Build
         run: npm run build
@@ -38,6 +38,7 @@ jobs:
           host: ${{ secrets.IP_ADDR }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
+          script_stop: true # stop after first failure
           script: |
             cd ~/nodejsapp/dist
             pm2 restart index.js --name=TheApp
