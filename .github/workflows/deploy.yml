@@ -18,7 +18,7 @@ jobs:
           cache: npm
 
       - name: Install Production Dependencies
-        run: npm ci --only=production
+        run: HUSKY=0 npm ci
 
       - name: Build
         run: npm run build
