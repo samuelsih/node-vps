@@ -4,10 +4,25 @@ services:
   api:
     container_name: api
     build: .
-    ports:
-      - 7000:7000
+    depends_on:
+      - caddy
     volumes:
       - ./:/usr/app
       - /usr/app/node_modules
-    environment:
-      - PORT=7000
+
+  caddy:
+    container_name: caddy
+    image: caddy:2.7.4-alpine
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
