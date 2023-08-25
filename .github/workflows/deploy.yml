@@ -34,8 +34,6 @@ jobs:
 
       - name: Start Script
         uses: appleboy/ssh-action@v1.0.0
-        env:
-          APP_NAME: "TheApp"
         with:
           host: ${{ secrets.IP_ADDR }}
           username: ${{ secrets.USERNAME }}
@@ -47,8 +45,10 @@ jobs:
             npx npe scripts.prepare ""
             npm ci --omit=dev
 
+            APP_NAME=TheApp
+
             PM2_EXIST=$(if pm2 list 2> /dev/null | grep -q $APP_NAME; then echo "Yes" ; else echo "No" ; fi)
-            
+
             if [ $PM2_EXIST = Yes ] ; then
                 pm2 restart $APP_NAME
                 echo "Restart $APP_NAME."
@@ -56,4 +56,3 @@ jobs:
                 pm2 start ~/nodejsapp/deployed/dist/index.js --name=$APP_NAME
                 echo "Start $APP_NAME."
             fi
-
