@@ -1,8 +1,6 @@
 {
-  "name": "testapp",
+  "name": "node-vps",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "lint": "npx eslint src/**/*.ts",
     "lint:fix": "npx eslint src/**/*.ts --fix",

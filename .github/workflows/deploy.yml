@@ -45,7 +45,7 @@ jobs:
             npx npe scripts.prepare ""
             npm ci --omit=dev
 
-            APP_NAME=TheApp
+            APP_NAME=NodeJsApp
             echo $APP_NAME
 
             PM2_EXIST=$(if pm2 list 2> /dev/null | grep -q $APP_NAME; then echo "Yes" ; else echo "No" ; fi)
