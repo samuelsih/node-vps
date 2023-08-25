@@ -23,6 +23,17 @@ services:
       - caddy_data:/data
       - caddy_config:/config
 
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app
+
 volumes:
   caddy_data:
   caddy_config:
