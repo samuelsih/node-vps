@@ -46,13 +46,15 @@ jobs:
             npm ci --omit=dev
 
             APP_NAME=TheApp
+            echo $APP_NAME
 
             PM2_EXIST=$(if pm2 list 2> /dev/null | grep -q $APP_NAME; then echo "Yes" ; else echo "No" ; fi)
+            echo $PM2_EXIST
 
             if [ $PM2_EXIST = Yes ] ; then
+                echo "Restarting $APP_NAME..."
                 pm2 restart $APP_NAME
-                echo "Restart $APP_NAME."
             else
+                echo "Start $APP_NAME..."
                 pm2 start ~/nodejsapp/deployed/dist/index.js --name=$APP_NAME
-                echo "Start $APP_NAME."
             fi
