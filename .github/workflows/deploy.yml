@@ -51,10 +51,4 @@ jobs:
             PM2_EXIST=$(if pm2 list 2> /dev/null | grep -q $APP_NAME; then echo "Yes" ; else echo "No" ; fi)
             echo $PM2_EXIST
 
-            if [ $PM2_EXIST = Yes ] ; then
-                echo "Restarting $APP_NAME..."
-                pm2 restart $APP_NAME
-            else
-                echo "Start $APP_NAME..."
-                pm2 start ~/nodejsapp/deployed/dist/index.js --name=$APP_NAME
-            fi
+            if [ $PM2_EXIST = Yes ] ; then pm2 restart $APP_NAME ; else pm2 start ~/nodejsapp/deployed/dist/index.js --name=$APP_NAME ; fi
