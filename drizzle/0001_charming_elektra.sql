@@ -1,0 +1,1 @@
+ALTER TABLE "users" ALTER COLUMN "timestamp" DROP DEFAULT;

@@ -1,4 +1,3 @@
 import { Request, Response } from "express";
 
-export const something = (req: Request, res: Response) =>
-  res.send("from something!!!");
+export const something = (_: Request, res: Response) => res.send("Hello Root");

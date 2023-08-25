@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1692985258906,
+      "tag": "0000_motionless_starbolt",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1692985444782,
+      "tag": "0001_charming_elektra",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1692987995193,
+      "tag": "0002_boring_ben_urich",
+      "breakpoints": true
+    }
+  ]
+}
