@@ -2,6 +2,7 @@ import fastify from "fastify";
 import { authRoutes } from "@/handler/auth/routes";
 import errorHandler from "@/interceptor/errorHandler";
 import { preventEmptyReqBody } from "@/interceptor/preHandler";
+import { addTimeRelatedHandler } from "@/interceptor/addTimeRelatedHandler";
 
 async function main() {
   const app = fastify({
@@ -10,6 +11,7 @@ async function main() {
 
   app.setErrorHandler(errorHandler);
   app.addHook("preHandler", preventEmptyReqBody);
+  app.addHook("preSerialization", addTimeRelatedHandler)
   app.register(authRoutes, { prefix: "/auth" });
 
   app.get("/", (_, res) => res.code(200).send({ msg: "OK" }));
