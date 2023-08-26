@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "98adbb8d-8528-4d94-b6b3-772efacfa467",
-  "prevId": "2915c304-e19f-4070-8a90-c7cd28afce6e",
+  "id": "7f11eb44-b53d-495b-8fa2-fd739e596957",
+  "prevId": "71b4ad84-8ccc-42b2-9430-304410aae587",
   "tables": {
     "users": {
       "name": "users",
@@ -14,20 +14,39 @@
           "primaryKey": true,
           "notNull": true
         },
-        "full_name": {
-          "name": "full_name",
+        "email": {
+          "name": "email",
           "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "phone": {
           "name": "phone",
-          "type": "varchar(255)",
+          "type": "varchar(20)",
           "primaryKey": false,
           "notNull": false
         },
-        "timestamp": {
-          "name": "timestamp",
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false
@@ -36,7 +55,13 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": ["email"]
+        }
+      }
     }
   },
   "enums": {},
