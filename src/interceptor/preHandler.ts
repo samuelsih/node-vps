@@ -5,7 +5,7 @@ export const preventEmptyReqBody = (
   reply: FastifyReply,
   done: HookHandlerDoneFunction,
 ) => {
-  if (!["POST", "PUT", "PATCH"].includes(request.method)) {
+  if (["GET", "DELETE"].includes(request.method)) {
     done();
   }
 
