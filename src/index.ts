@@ -1,18 +1,18 @@
-import { authRoutes } from '@/handler/auth/routes';
-import { initServer } from './server';
+import { authRoutes } from "@/handler/auth/routes";
+import { initServer } from "./server";
 
 async function main() {
   const app = initServer();
 
   // routes
-  app.register(authRoutes, { prefix: '/auth' });
+  app.register(authRoutes, { prefix: "/auth" });
 
   await app.listen({
-    host: 'localhost',
+    host: "localhost",
     port: 5000,
   });
 
-  const signals = ['SIGINT', 'SIGTERM'];
+  const signals = ["SIGINT", "SIGTERM"];
 
   for (const signal of signals) {
     process.on(signal, () => {

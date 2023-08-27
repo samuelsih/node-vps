@@ -1,4 +1,4 @@
-import { LoginRequestType, RegisterRequestType } from './request';
+import { LoginRequestType, RegisterRequestType } from "./request";
 
 export interface IAuthRepo {
   createUser: (user: RegisterRequestType) => Promise<CreateUserResult>;

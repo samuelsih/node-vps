@@ -1,13 +1,13 @@
-import { users } from '@/schema/user';
-import { LoginRequestType, RegisterRequestType } from './request';
-import { sql } from 'drizzle-orm';
-import { CreateUserResult, FindUserResult, IAuthRepo } from './types';
+import { users } from "@/schema/user";
+import { LoginRequestType, RegisterRequestType } from "./request";
+import { sql } from "drizzle-orm";
+import { CreateUserResult, FindUserResult, IAuthRepo } from "./types";
 
 export default class AuthRepo implements IAuthRepo {
   constructor(private db: DB) {}
 
   public async createUser(
-    user: RegisterRequestType
+    user: RegisterRequestType,
   ): Promise<CreateUserResult> {
     const result = await this.db
       .insert(users)
@@ -40,16 +40,16 @@ export default class AuthRepo implements IAuthRepo {
       .from(users)
       .where(
         sql`
-        ${users.email} = ${sql.placeholder('email')}
+        ${users.email} = ${sql.placeholder("email")}
         AND
         ${users.password} = crypt(
-          ${sql.placeholder('password')}, 
+          ${sql.placeholder("password")}, 
           ${users.password}
         )
-        `
+        `,
       )
       .limit(1)
-      .prepare('findUser');
+      .prepare("findUser");
 
     const result = await prepare.execute({
       email: data.email,

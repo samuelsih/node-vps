@@ -1,6 +1,6 @@
-import { FastifyReply, FastifyRequest } from 'fastify';
-import { LoginRequest, RegisterRequest } from './request';
-import { IAuthRepo } from './types';
+import { FastifyReply, FastifyRequest } from "fastify";
+import { LoginRequest, RegisterRequest } from "./request";
+import { IAuthRepo } from "./types";
 
 export const register = (repo: IAuthRepo) => {
   return async (r: FastifyRequest, w: FastifyReply) => {
@@ -15,7 +15,7 @@ export const login = (repo: IAuthRepo) => {
     const body = await LoginRequest.parseAsync(r.body);
     const user = await repo.findUser(body);
     if (!user) {
-      return w.code(400).send({ msg: 'Invalid credentials' });
+      return w.code(400).send({ msg: "Invalid credentials" });
     }
 
     const token = r.server.jwt.sign({ payload: user });
