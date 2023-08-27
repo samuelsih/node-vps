@@ -6,8 +6,6 @@ export const errorHandler = (
   request: FastifyRequest,
   reply: FastifyReply,
 ) => {
-  request.log.error(errors);
-  
   if (errors instanceof ZodError) {
     return reply.code(400).send({
       msg: "Failed validation",
@@ -29,6 +27,8 @@ export const errorHandler = (
       },
     });
   }
+
+  request.log.error(errors);
 
   return reply
     .code(500)

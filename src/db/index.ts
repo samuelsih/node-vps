@@ -1,17 +1,16 @@
-import { sql } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
-import { users } from "@/schema/user";
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+import { users } from '@/schema/user';
 
 const client = postgres({
-  host: process.env.DB_HOST || "localhost",
+  host: process.env.DB_HOST || 'localhost',
   port: Number(process.env.DB_PORT || 5432),
-  database: process.env.DB_NAME || "app",
-  username: process.env.DB_USER || "postgres",
-  password: process.env.DB_PASSWORD || "password",
+  database: process.env.DB_NAME || 'app',
+  username: process.env.DB_USER || 'postgres',
+  password: process.env.DB_PASSWORD || 'password',
 });
 
 const db = drizzle(client, { schema: { users } });
-db.execute(sql`CREATE EXTENSION IF NOT EXISTS pgcrypto;`);
 
-export { db };
+
+export { db }

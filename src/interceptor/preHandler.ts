@@ -1,12 +1,11 @@
-import { FastifyReply, FastifyRequest, HookHandlerDoneFunction } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
 
-export const preventEmptyReqBody = (
+export const preventEmptyReqBody = async (
   request: FastifyRequest,
   reply: FastifyReply,
-  done: HookHandlerDoneFunction,
 ) => {
   if (["GET", "DELETE"].includes(request.method)) {
-    done();
+    return;
   }
 
   if (request.body === null || request.body === undefined) {
@@ -14,6 +13,4 @@ export const preventEmptyReqBody = (
       msg: "Please provide all required request",
     });
   }
-
-  done();
 };
