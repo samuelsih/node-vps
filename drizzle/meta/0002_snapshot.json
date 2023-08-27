@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "ebf6dd56-9b8b-4e03-a800-6d89e05057c9",
-  "prevId": "98adbb8d-8528-4d94-b6b3-772efacfa467",
+  "id": "3c8dc20b-76c4-497b-a5f0-de2ef89441be",
+  "prevId": "7f11eb44-b53d-495b-8fa2-fd739e596957",
   "tables": {
     "users": {
       "name": "users",
@@ -20,15 +20,15 @@
           "primaryKey": false,
           "notNull": true
         },
-        "full_name": {
-          "name": "full_name",
+        "name": {
+          "name": "name",
           "type": "varchar(100)",
           "primaryKey": false,
           "notNull": true
         },
-        "password": {
-          "name": "password",
-          "type": "varchar(100)",
+        "passwd": {
+          "name": "passwd",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
@@ -38,8 +38,15 @@
           "primaryKey": false,
           "notNull": false
         },
-        "timestamp": {
-          "name": "timestamp",
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false
@@ -48,7 +55,13 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": ["email"]
+        }
+      }
     }
   },
   "enums": {},
@@ -56,6 +69,8 @@
   "_meta": {
     "schemas": {},
     "tables": {},
-    "columns": {}
+    "columns": {
+      "\"users\".\"password\"": "\"users\".\"passwd\""
+    }
   }
 }

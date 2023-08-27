@@ -9,7 +9,7 @@ ENV DB_USER=admin
 ENV DB_PASSWORD=password
 
 COPY package*.json .
-RUN npm i
+RUN npm ci
 
 COPY . .
 

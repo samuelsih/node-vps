@@ -1,16 +1,24 @@
-import express, { Express } from 'express';
-import { something } from '@/controller/something';
-import { register } from './controller/auth';
-import withErrorHandling from '@/middleware/globalErrorHandling';
+import { authRoutes } from "@/handler/auth/routes";
+import { initServer } from "./server";
 
-const app: Express = express();
-const port = 5000;
+async function main() {
+  const app = initServer();
 
-app.use(express.json());
+  // routes
+  app.register(authRoutes, { prefix: "/auth" });
 
-app.get('/', something);
-app.post('/register', withErrorHandling(register));
+  await app.listen({
+    host: "localhost",
+    port: 5000,
+  });
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+  const signals = ["SIGINT", "SIGTERM"];
+
+  for (const signal of signals) {
+    process.on(signal, () => {
+      app.close();
+    });
+  }
+}
+
+main();
